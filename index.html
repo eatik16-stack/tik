@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tik</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f6f3">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#141917">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Tik">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAAYFBMVEX////8/f3+/P32+vn2+Pju9fXq8vL46vDZ6ejz3Obz2+XK3d262Nbiy9etz86RwL7bsMTZka9qqadOmJU/kI03jIgngn8be3cSdnLPdJoOdHDJYYy/RXi6NWy3LGa0I1/49grrAAADM0lEQVR42u3c67KbIBSGYXZMtzl7SmKCxt7/XbY/2s7eiSCLsIA1/bgBecYZX8QE9ZN5aOahAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPgPAX1X7dWPQ9UJBbSF+jM2nURApb6MQy8N0O/Vt3EQBrg9zV+pShbg9Dx/9dFJAlTqdewFAdqZ+atCDqD7mAOosxTApZidv2qFAK6fSjSg3xjmrzoRgNcA/BtXEYCTcf7qJgFQmed/kvAYbc3zL64CAIYAiFkLnQvz/DcCVqPGAPwen9f8AeYAKLW+5P9GZgmA81I6KcASAMdFRFqAJQDOD6CUAEsAXAuWFGALwP6WP+CytgSg19kDwgQgHSBQAJIBQgUgGSBUAFIBggUgESBcANIAAgYgCSBkAFIAggYgASBsAOIDAgcgPiBwAKIDQgfAAzDdm2NZHpv75AEIHgA6YCj/XrAcyIDwAaACpvrrNeuJBmAIABVw/H7V7YMC4AgAEdA8X9dVwBYAGmBcKU8BWwBogHrm2m4CtgDQADvlK2ALAAkwrZSvgC0AJMBgmICDgC0AJEBjmsJuSTAWXAEIcgcW78GjZAsACTAqP8G05QsA7Sm09hMcGQNAA1hmYhHUnAGgAQblIWhYA/DuWmhZcOcNAHU1uqMKhhVvAKiAx5YmGNfMASC/kdEE/AGgv1JSBBEC4PFSTxBECIDPtoqzIEYAvPaFHAVRAuC3seUkiBMAz505B0GkAPhuLS4KYgXAe290QTDGCoD/5u7DuqqwjOKsswAs3INYAXhne91P0OpsAF6CSmcE8BCcdFYAsiB8AN79xEQTMATg7W9kFAFHAN7/yOfeA5YABPhK6XoPeAIQ4jOro6DVuQLcBJXOF+AiOOmcAcsCtgCE+qnBgmDb68wB9qdp+dDZA2z3YD2K+E+9UbAahBwKYBLcxZxqMC9oBB3LMCeoRZ0r8So4CjsY4/lpupuknexh+EWUFnQ0yexv0rSos1WGpi7Luhlxug0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwDB+AXp4nIbZfjvvAAAAAElFTkSuQmCC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light dark;
+  --bg:#f4f6f3; --ink:#1b2420; --muted:#5a6660; --line:#dfe4de; --field:#ffffff;
+  --irem:#b4235f; --irem-soft:#f6dce6;
+  --rana:#0e7470; --rana-soft:#cfece8;
+  --on-fill:#ffffff;
+  --accent:var(--irem);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#141917; --ink:#ebefea; --muted:#9aa6a0; --line:#2a322e; --field:#1d2421;
+    --irem:#f07aa8; --irem-soft:#3a1e2b;
+    --rana:#4cc7bc; --rana-soft:#15332f;
+    --on-fill:#141917;
+  }
+}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font:400 17px/1.35 Gabarito,ui-rounded,system-ui,-apple-system,"Segoe UI",sans-serif;
+  min-height:100dvh;
+  padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));
+  -webkit-tap-highlight-color:transparent;
+}
+.wrap{max-width:480px;margin:0 auto}
+[hidden]{display:none!important}
+button,input{font:inherit;color:inherit}
+button{background:none;border:0;padding:0;cursor:pointer;touch-action:manipulation}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+
+/* Giriş */
+.login{min-height:calc(100dvh - 60px);display:flex;flex-direction:column;justify-content:center;gap:24px}
+.logo{font-size:64px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.login h2{font-size:21px;font-weight:500;color:var(--muted);margin-top:6px}
+.who{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.who button{height:120px;border-radius:18px;font-size:28px;font-weight:700;display:flex;align-items:flex-end;padding:14px 16px}
+.who [data-who=irem]{background:var(--irem-soft);color:var(--irem)}
+.who [data-who=rana]{background:var(--rana-soft);color:var(--rana)}
+.who button[aria-pressed=true]{color:var(--on-fill)}
+.who [data-who=irem][aria-pressed=true]{background:var(--irem)}
+.who [data-who=rana][aria-pressed=true]{background:var(--rana)}
+.pass{display:grid;gap:10px}
+.pass label{font-weight:500}
+.field{width:100%;height:50px;border:1.5px solid var(--line);border-radius:12px;background:var(--field);padding:0 14px;font-size:17px}
+.field:focus{outline:0;border-color:var(--accent)}
+.primary{height:50px;border-radius:12px;background:var(--accent);color:var(--on-fill);font-weight:700;padding:0 18px}
+.primary:disabled{opacity:.55}
+.err{color:var(--irem);font-weight:500}
+
+/* Üst bölüm */
+.top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px}
+.today{text-align:left;min-width:0}
+.today h1{font-size:32px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.today p{color:var(--muted);font-size:16px}
+.nav{display:flex;gap:2px;flex:none}
+.nav button{width:44px;height:44px;border-radius:50%;display:grid;place-items:center}
+.nav svg{width:22px;height:22px;stroke:var(--ink);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* İki kişilik skor: kutu bitirilen iş oranında dolar */
+.scores{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.score{position:relative;display:block;width:100%;height:124px;border-radius:18px;overflow:visible;text-align:left}
+.score .layer{position:absolute;inset:0;border-radius:18px;padding:12px 14px;display:flex;flex-direction:column;justify-content:space-between}
+.score .nm{font-size:19px;font-weight:700}
+.score .ct{font-size:50px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.score .ct small{font-size:24px;font-weight:600;letter-spacing:0;opacity:.72;margin-left:1px}
+.score .base{background:var(--soft);color:var(--strong)}
+.score .fill{background:var(--strong);color:var(--on-fill);clip-path:inset(calc(100% - var(--p,0%)) 0 0 0 round 18px);transition:clip-path .55s cubic-bezier(.3,1.3,.5,1)}
+.score[data-who=irem]{--soft:var(--irem-soft);--strong:var(--irem)}
+.score[data-who=rana]{--soft:var(--rana-soft);--strong:var(--rana)}
+.score[aria-selected=true]::after{content:"";position:absolute;left:24px;bottom:-9px;border:9px solid transparent;border-bottom:0;border-top-color:var(--strong)}
+.score.pop{animation:pop .5s ease-out}
+@keyframes pop{40%{transform:scale(1.035)}}
+
+/* Yazma alanı */
+.composer{display:flex;gap:8px;margin-bottom:12px}
+.composer .field{flex:1;min-width:0}
+.leftover{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0 12px;border-bottom:1.5px solid var(--line);margin-bottom:4px}
+.leftover button{flex:none;font-weight:700;color:var(--accent);min-height:44px;padding:0 4px}
+
+/* Liste */
+.list{list-style:none;padding:0}
+.item{display:flex;align-items:flex-start;gap:4px;border-bottom:1px solid var(--line)}
+.tick{flex:none;width:48px;height:52px;display:grid;place-items:center;margin-left:-8px}
+.box{width:28px;height:28px;display:block;overflow:visible}
+.box circle{fill:none;stroke:var(--muted);stroke-width:2;transition:fill .15s,stroke .15s}
+.box path{fill:none;stroke:var(--on-fill);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:26;stroke-dashoffset:26}
+.done .box circle{fill:var(--accent);stroke:var(--accent)}
+.done .box path{stroke-dashoffset:0}
+.just .box path{animation:draw .28s ease-out}
+.just .box{animation:bump .3s ease-out}
+@keyframes draw{from{stroke-dashoffset:26}to{stroke-dashoffset:0}}
+@keyframes bump{50%{transform:scale(1.22)}}
+.txt{flex:1;min-width:0;padding:14px 0;overflow-wrap:anywhere}
+.done .txt{color:var(--muted);text-decoration:line-through;text-decoration-thickness:1.5px}
+.del{flex:none;width:44px;height:52px;display:grid;place-items:center;margin-right:-10px;color:var(--muted)}
+.del svg{width:16px;height:16px;stroke:currentColor;stroke-width:2.2;stroke-linecap:round}
+.empty{color:var(--muted);padding:18px 0;line-height:1.45}
+.alldone{font-size:21px;font-weight:700;color:var(--accent);padding:18px 0 4px}
+.foot{display:flex;justify-content:flex-end;margin-top:28px}
+.foot button{color:var(--muted);font-size:15px;min-height:44px;padding:0 4px}
+
+.toast{position:fixed;left:50%;bottom:max(20px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(calc(100% - 32px),448px);background:var(--ink);color:var(--bg);padding:12px 16px;border-radius:12px;font-weight:500;z-index:5}
+.spark{position:fixed;width:9px;height:9px;border-radius:50%;pointer-events:none;z-index:6}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section id="login" class="login" hidden>
+    <div>
+      <div class="logo">Tik</div>
+      <h2>Kim giriyor?</h2>
+    </div>
+    <div class="who">
+      <button type="button" data-who="irem" aria-pressed="false">İrem</button>
+      <button type="button" data-who="rana" aria-pressed="false">Rana</button>
+    </div>
+    <form id="passForm" class="pass" hidden>
+      <label for="pass">Şifre</label>
+      <input id="pass" class="field" type="password" autocomplete="current-password" autocapitalize="none" autocorrect="off" spellcheck="false" required>
+      <button class="primary" id="passBtn">Giriş yap</button>
+      <p class="err" id="passErr" role="alert" hidden></p>
+    </form>
+  </section>
+
+  <main id="app" hidden>
+    <header class="top">
+      <button class="today" id="goToday" type="button">
+        <h1 id="dayName"></h1>
+        <p id="dayDate"></p>
+      </button>
+      <div class="nav">
+        <button type="button" id="prev" aria-label="Önceki gün"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" id="next" aria-label="Sonraki gün"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </header>
+
+    <div class="scores" role="tablist" aria-label="Kimin listesi">
+      <button class="score" data-who="irem" role="tab" type="button"></button>
+      <button class="score" data-who="rana" role="tab" type="button"></button>
+    </div>
+
+    <form class="composer" id="composer">
+      <input class="field" id="newTask" placeholder="Bir iş yaz" aria-label="Yeni iş" maxlength="200" autocomplete="off" enterkeyhint="done">
+      <button class="primary">Ekle</button>
+    </form>
+
+    <div class="leftover" id="leftover" hidden>
+      <span id="leftoverText"></span>
+      <button type="button" id="leftoverBtn">Bugüne al</button>
+    </div>
+
+    <ul class="list" id="list"></ul>
+    <p class="alldone" id="allDone" hidden>Hepsi bitti!</p>
+    <p class="empty" id="empty" hidden></p>
+    <p class="empty" id="loadErr" hidden>Liste açılamadı. İnternet bağlantını kontrol et. <button type="button" id="retry" style="font-weight:700;text-decoration:underline">Tekrar dene</button></p>
+
+    <footer class="foot"><button type="button" id="logout">Çıkış yap</button></footer>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js"></script>
+<script>
+const SUPABASE_URL = 'https://dvavtslsmqlzyghdeklp.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_pigvtgV8ExDFsEdJaYSlFw_xj15kcu7';
+const PEOPLE = { irem: 'İrem', rana: 'Rana' };
+const emailOf = who => who + '@tik.example.com';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const $ = id => document.getElementById(id);
+const pad = n => String(n).padStart(2, '0');
+const iso = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+const parseDay = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
+const shift = (s, n) => { const d = parseDay(s); d.setDate(d.getDate() + n); return iso(d); };
+const todayStr = () => iso(new Date());
+
+const state = { me: null, ids: {}, day: todayStr(), view: null, tasks: [], leftovers: [], pending: 0, justId: null, channel: null, loadToken: 0, lastToday: todayStr() };
+const whoOf = id => Object.keys(state.ids).find(k => state.ids[k] === id);
+
+/* Giriş */
+let chosen = null;
+document.querySelectorAll('.who button').forEach(b => b.addEventListener('click', () => {
+  chosen = b.dataset.who;
+  document.querySelectorAll('.who button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  document.documentElement.style.setProperty('--accent', `var(--${chosen})`);
+  $('passForm').hidden = false; $('passErr').hidden = true; $('pass').focus();
+}));
+$('passForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  $('passBtn').disabled = true; $('passErr').hidden = true;
+  const { data, error } = await sb.auth.signInWithPassword({ email: emailOf(chosen), password: $('pass').value.trim().toLowerCase() });
+  $('passBtn').disabled = false;
+  if (error) {
+    $('passErr').textContent = error.status === 400 ? 'Şifre yanlış. Tekrar dene.' : 'Bağlantı kurulamadı. İnternetini kontrol edip tekrar dene.';
+    $('passErr').hidden = false;
+    return;
+  }
+  $('pass').value = '';
+  start(data.user);
+});
+$('logout').addEventListener('click', async () => {
+  if (state.channel) sb.removeChannel(state.channel);
+  state.channel = null;
+  await sb.auth.signOut();
+  $('app').hidden = true; $('login').hidden = false; $('passForm').hidden = true;
+  document.querySelectorAll('.who button').forEach(x => x.setAttribute('aria-pressed', false));
+});
+
+/* Açılış */
+async function start(user) {
+  $('login').hidden = true; $('app').hidden = false;
+  const { data, error } = await sb.from('members').select('user_id,name');
+  if (error || !data || !data.length) { showLoadError(); return; }
+  data.forEach(m => { const k = Object.keys(PEOPLE).find(p => PEOPLE[p] === m.name); if (k) state.ids[k] = m.user_id; });
+  state.me = whoOf(user.id);
+  state.view = state.me;
+  state.day = todayStr();
+  document.documentElement.style.setProperty('--accent', `var(--${state.view})`);
+  subscribe();
+  await load();
+}
+function showLoadError() {
+  $('loadErr').hidden = false; $('list').replaceChildren();
+  $('empty').hidden = true; $('allDone').hidden = true; $('composer').hidden = true;
+}
+
+/* Veri */
+async function load() {
+  const token = ++state.loadToken;
+  const day = state.day;
+  const [list, left] = await Promise.all([
+    sb.from('tasks').select('id,owner,day,title,done').eq('day', day).order('id'),
+    sb.from('tasks').select('id').eq('owner', state.ids[state.me]).eq('done', false).lt('day', todayStr()).gte('day', shift(todayStr(), -7))
+  ]);
+  if (token !== state.loadToken || state.pending) return;
+  if (list.error) { showLoadError(); return; }
+  $('loadErr').hidden = true;
+  state.tasks = list.data;
+  state.leftovers = left.data || [];
+  render();
+}
+async function write(op) {
+  state.pending++;
+  let ok = true;
+  try {
+    const { error } = await op();
+    if (error) throw error;
+  } catch (e) {
+    ok = false;
+    toast('Kaydedilemedi. İnternet bağlantını kontrol et.');
+  }
+  state.pending--;
+  if (!state.pending) await load();
+  return ok;
+}
+let reloadTimer;
+function subscribe() {
+  if (state.channel) sb.removeChannel(state.channel);
+  state.channel = sb.channel('tasks-live')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'tasks' }, p => {
+      const n = p.new;
+      if (p.eventType === 'UPDATE' && n.done && n.owner !== state.ids[state.me] && n.day === todayStr()) {
+        toast(`${PEOPLE[whoOf(n.owner)]} bir iş bitirdi: ${n.title}`);
+      }
+      clearTimeout(reloadTimer);
+      reloadTimer = setTimeout(() => { if (!state.pending) load(); }, 150);
+    })
+    .subscribe();
+}
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden || !state.me) return;
+  const now = todayStr();
+  if (state.day === state.lastToday) state.day = now;
+  state.lastToday = now;
+  load();
+});
+
+/* Ekrana çizim */
+const tickSvg = '<svg class="box" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12.5"/><path d="M8 14.6l4.2 4.2L20.4 9.6"/></svg>';
+const xSvg = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg>';
+function count(who) {
+  const mine = state.tasks.filter(t => t.owner === state.ids[who]);
+  return { total: mine.length, done: mine.filter(t => t.done).length };
+}
+function render() {
+  const today = todayStr();
+  const names = { [today]: 'Bugün', [shift(today, -1)]: 'Dün', [shift(today, 1)]: 'Yarın' };
+  const d = parseDay(state.day);
+  $('dayName').textContent = names[state.day] || d.toLocaleDateString('tr-TR', { weekday: 'long' });
+  $('dayDate').textContent = d.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', weekday: names[state.day] ? 'long' : undefined });
+  $('goToday').setAttribute('aria-label', state.day === today ? 'Bugün' : 'Bugüne dön');
+
+  document.querySelectorAll('.score').forEach(b => {
+    const who = b.dataset.who, c = count(who), p = c.total ? Math.round(c.done / c.total * 100) : 0;
+    const inner = `<span class="nm">${PEOPLE[who]}</span><span class="ct">${c.done}<small>/${c.total}</small></span>`;
+    b.setAttribute('aria-selected', who === state.view);
+    b.setAttribute('aria-label', `${PEOPLE[who]}: ${c.total} işten ${c.done} tanesi bitti`);
+    if (!b.firstChild) b.innerHTML = '<span class="layer base"></span><span class="layer fill" aria-hidden="true"></span>';
+    b.children[0].innerHTML = inner;
+    b.children[1].innerHTML = inner;
+    b.children[1].style.setProperty('--p', p + '%');
+  });
+
+  const own = state.view === state.me;
+  $('composer').hidden = !own;
+  const leftovers = own && state.day === today ? state.leftovers.length : 0;
+  $('leftover').hidden = !leftovers;
+  $('leftoverText').textContent = `Önceki günlerden ${leftovers} iş kaldı`;
+
+  const items = state.tasks.filter(t => t.owner === state.ids[state.view]);
+  const frag = document.createDocumentFragment();
+  items.forEach(t => {
+    const li = document.createElement('li');
+    li.className = 'item' + (t.done ? ' done' : '') + (t.id === state.justId && t.done ? ' just' : '');
+    const box = document.createElement(own ? 'button' : 'span');
+    box.className = 'tick';
+    box.innerHTML = tickSvg;
+    const txt = document.createElement('span');
+    txt.className = 'txt';
+    txt.textContent = t.title;
+    li.append(box, txt);
+    if (own) {
+      box.type = 'button';
+      box.setAttribute('role', 'checkbox');
+      box.setAttribute('aria-checked', t.done);
+      box.setAttribute('aria-label', t.title);
+      box.addEventListener('click', () => toggle(t));
+      const del = document.createElement('button');
+      del.type = 'button'; del.className = 'del'; del.innerHTML = xSvg;
+      del.setAttribute('aria-label', `Sil: ${t.title}`);
+      del.addEventListener('click', () => remove(t));
+      li.append(del);
+    } else {
+      box.setAttribute('role', 'img');
+      box.setAttribute('aria-label', t.done ? 'Bitti' : 'Bitmedi');
+    }
+    frag.append(li);
+  });
+  $('list').replaceChildren(frag);
+  state.justId = null;
+
+  $('allDone').hidden = !(items.length && items.every(t => t.done));
+  $('empty').hidden = items.length > 0;
+  if (!items.length) {
+    const when = names[state.day] ? names[state.day].toLowerCase() : 'bu gün';
+    $('empty').textContent = own
+      ? 'Liste boş. İlk işi yukarıya yaz ya da WhatsApp listeni olduğu gibi yapıştır.'
+      : `${PEOPLE[state.view]} ${when} için henüz iş yazmadı.`;
+  }
+}
+
+/* İşlemler */
+function toggle(t) {
+  const wasAllDone = count(state.me);
+  t.done = !t.done;
+  state.justId = t.id;
+  if (t.done && navigator.vibrate) navigator.vibrate(12);
+  render();
+  const c = count(state.me);
+  if (t.done && c.done === c.total && wasAllDone.done !== wasAllDone.total) celebrate();
+  write(() => sb.from('tasks').update({ done: t.done }).eq('id', t.id));
+}
+function remove(t) {
+  state.tasks = state.tasks.filter(x => x !== t);
+  render();
+  write(() => sb.from('tasks').delete().eq('id', t.id));
+}
+async function addMany(rows) {
+  if (!rows.length) return;
+  const owner = state.ids[state.me], day = state.day;
+  rows.forEach((r, i) => state.tasks.push({ id: -Date.now() - i, owner, day, title: r.title, done: r.done }));
+  render();
+  await write(() => sb.from('tasks').insert(rows.map(r => ({ owner, day, title: r.title, done: r.done }))));
+}
+function parseLines(text) {
+  return text.split(/\r?\n/).map(line => {
+    const done = /[✅✔☑✓]/.test(line);
+    const title = line
+      .replace(/^\[[^\]]*\]\s[^:]+:\s*/, '')
+      .replace(/[✅✔☑✓]️?/g, '')
+      .replace(/\*/g, '')
+      .replace(/^\s*(?:[-•–—]|\d+[.)-])\s*/, '')
+      .trim().slice(0, 200);
+    return title ? { title, done } : null;
+  }).filter(Boolean).slice(0, 40);
+}
+$('composer').addEventListener('submit', e => {
+  e.preventDefault();
+  const rows = parseLines($('newTask').value);
+  $('newTask').value = '';
+  $('newTask').focus();
+  addMany(rows);
+});
+$('newTask').addEventListener('paste', e => {
+  const text = (e.clipboardData || window.clipboardData).getData('text');
+  if (!/\n/.test(text.trim())) return;
+  e.preventDefault();
+  addMany(parseLines(text));
+});
+$('leftoverBtn').addEventListener('click', () => {
+  const ids = state.leftovers.map(x => x.id);
+  state.leftovers = [];
+  write(() => sb.from('tasks').update({ day: todayStr() }).in('id', ids));
+});
+document.querySelectorAll('.score').forEach(b => b.addEventListener('click', () => {
+  state.view = b.dataset.who;
+  document.documentElement.style.setProperty('--accent', `var(--${state.view})`);
+  render();
+}));
+function goTo(day) { state.day = day; state.tasks = []; render(); load(); }
+$('prev').addEventListener('click', () => goTo(shift(state.day, -1)));
+$('next').addEventListener('click', () => goTo(shift(state.day, 1)));
+$('goToday').addEventListener('click', () => { if (state.day !== todayStr()) goTo(todayStr()); });
+$('retry').addEventListener('click', async () => {
+  $('loadErr').hidden = true;
+  const { data } = await sb.auth.getSession();
+  if (data.session) start(data.session.user);
+});
+
+/* Geri bildirim */
+let toastTimer;
+function toast(msg) {
+  $('toast').textContent = msg; $('toast').hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { $('toast').hidden = true; }, 3500);
+}
+function celebrate() {
+  const b = document.querySelector(`.score[data-who=${state.me}]`);
+  b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const r = b.getBoundingClientRect(), color = getComputedStyle(b).getPropertyValue('--strong');
+  for (let i = 0; i < 18; i++) {
+    const s = document.createElement('span');
+    s.className = 'spark';
+    s.style.cssText = `left:${r.left + r.width / 2}px;top:${r.top + r.height / 2}px;background:${color}`;
+    document.body.append(s);
+    const a = Math.random() * Math.PI * 2, dist = 50 + Math.random() * 90;
+    s.animate([
+      { transform: 'translate(0,0) scale(1)', opacity: 1 },
+      { transform: `translate(${Math.cos(a) * dist}px,${Math.sin(a) * dist + 30}px) scale(.4)`, opacity: 0 }
+    ], { duration: 650 + Math.random() * 250, easing: 'cubic-bezier(.2,.7,.3,1)' }).onfinish = () => s.remove();
+  }
+}
+
+/* Başlat */
+sb.auth.getSession().then(({ data }) => {
+  if (data.session) start(data.session.user);
+  else $('login').hidden = false;
+});
+</script>
+</body>
+</html>

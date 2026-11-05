@@ -1,0 +1,13 @@
+name: Veritabanini uyanik tut
+on:
+  schedule:
+    - cron: "17 6 */3 * *"
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl -fsS -X POST "https://dvavtslsmqlzyghdeklp.supabase.co/rest/v1/rpc/ping" \
+            -H "apikey: sb_publishable_pigvtgV8ExDFsEdJaYSlFw_xj15kcu7" \
+            -H "Content-Type: application/json" -d '{}'
